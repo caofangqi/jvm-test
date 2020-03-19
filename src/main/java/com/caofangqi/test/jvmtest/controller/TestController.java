@@ -17,6 +17,8 @@ import java.util.List;
 @RestController
 public class TestController {
 
+    List<byte[]>  byteListGCRoot = new LinkedList<>();
+
 
     @Resource
     private TestFacade testFacade;
@@ -41,7 +43,7 @@ public class TestController {
     }
 
     /**
-     * 测试OOM
+     * 测试OOM 建对象 可被回收的对象.
      * @param count count 数量
      * @return info
      */
@@ -52,6 +54,20 @@ public class TestController {
             byteList.add(new byte[byteSize]);
         }
         return "当前大小"+byteList.size();
+    }
+
+    /**
+     * 测试OOM 建对象 不可被回收的对象.
+     * @param count count 数量
+     * @return info
+     */
+    @GetMapping("/creatObjectHaveQuote")
+    public String creatObjectHaveQuote(Integer count,Integer byteSize){
+        byteListGCRoot = new LinkedList<>();
+        for (int i = 0; i < count; i++) {
+            byteListGCRoot.add(new byte[byteSize]);
+        }
+        return "当前大小"+byteListGCRoot.size();
     }
 
     /**
