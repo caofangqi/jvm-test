@@ -2,9 +2,7 @@ package com.caofangqi.test.jvmtest.controller;
 
 import com.caofangqi.test.jvmtest.facade.MemoryFacade;
 import com.caofangqi.test.jvmtest.facade.TestFacade;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
