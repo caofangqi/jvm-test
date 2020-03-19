@@ -63,7 +63,6 @@ public class TestController {
      */
     @GetMapping("/creatObjectHaveQuote")
     public String creatObjectHaveQuote(Integer count,Integer byteSize){
-        byteListGCRoot = new LinkedList<>();
         for (int i = 0; i < count; i++) {
             byteListGCRoot.add(new byte[byteSize]);
         }
