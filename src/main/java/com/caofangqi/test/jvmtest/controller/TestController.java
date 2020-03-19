@@ -1,5 +1,6 @@
 package com.caofangqi.test.jvmtest.controller;
 
+import com.caofangqi.test.jvmtest.facade.MemoryFacade;
 import com.caofangqi.test.jvmtest.facade.TestFacade;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,8 @@ public class TestController {
 
     @Resource
     private TestFacade testFacade;
+    @Resource
+    private MemoryFacade memoryFacade;
 
     /**
      * 测试栈溢出
@@ -50,6 +53,19 @@ public class TestController {
         }
         return "当前大小"+byteList.size();
     }
+
+    /**
+     * 测试OOM 堆外内存
+     * @return info
+     */
+    @GetMapping("/testOomOfDirectMemory")
+    public String testOomOfDirectMemory(Integer size,Boolean useUnsafe){
+        if (useUnsafe){
+            return memoryFacade.memoryAllocateByUnsafe(size);
+        }
+        return memoryFacade.memoryAllocate(size);
+    }
+
 
 
 

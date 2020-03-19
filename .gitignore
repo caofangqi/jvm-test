@@ -33,3 +33,4 @@ build/
 arthas-output/
 mvnw
 mvnw.cmd
+*.log
