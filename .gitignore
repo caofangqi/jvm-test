@@ -34,3 +34,5 @@ arthas-output/
 mvnw
 mvnw.cmd
 *.log
+*.hprof
+
