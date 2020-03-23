@@ -1,5 +1,6 @@
 package com.caofangqi.test.jvmtest.controller;
 
+import com.caofangqi.test.jvmtest.entity.TestEntity;
 import com.caofangqi.test.jvmtest.facade.MemoryFacade;
 import com.caofangqi.test.jvmtest.facade.TestFacade;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,8 @@ import java.util.List;
 @RestController
 public class TestController {
 
-    List<byte[]>  byteListGCRoot = new LinkedList<>();
 
+    List<TestEntity> entities = new LinkedList<>();
 
     @Resource
     private TestFacade testFacade;
@@ -62,9 +63,9 @@ public class TestController {
     @GetMapping("/creatObjectHaveQuote")
     public String creatObjectHaveQuote(Integer count,Integer byteSize){
         for (int i = 0; i < count; i++) {
-            byteListGCRoot.add(new byte[byteSize]);
+            entities.add(new TestEntity(byteSize));
         }
-        return "当前大小"+byteListGCRoot.size();
+        return "当前大小"+entities.size();
     }
 
     /**
